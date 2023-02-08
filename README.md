@@ -40,3 +40,19 @@ To connect in airflow UI, we need to user the port-forward:
 ```
 $ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow --context kind-airflow-cluster
 ```
+To upgrade some config in Airflow, we need to run the following command:
+```
+$ helm upgrade --install airflow apache-airflow/airflow -n airflow -f values.yaml --debug 
+```
+In this case, I've changed the executor and the extraEnvFrom, so I needed to run the helm upgrade.
+
+### How to install dependencies
+First, we need to create a requirements.txt and write on it all the dependencies that we need. Then, we have to create a Dockerfile with a airflow image and install the dependencies in the container.
+```
+$ docker build -t airflow-custom:1.0.0 .
+```
+Then, we have to load the image into our cluster.
+```
+$ kind load docker-image airflow-custom:1.0.0 --name airflow-cluster 
+```
+Then, we have to modify (in values.yaml) the `defaultAirflowRepository` with the value (name) of our image (in this case, is airflow-custom) and we also have to change `defaultAirflowTag` with the tag (in this case, 1.0.0).
