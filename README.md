@@ -11,6 +11,11 @@ $ brew install kubectl
 
 Install Docker and Docker compose.
 
+## How to delete cluster
+```
+$ kind delete clusters --all
+```
+
 ## How to run
 First, you need to create the cluster, running the following command:
 ```
