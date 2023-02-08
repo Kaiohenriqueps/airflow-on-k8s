@@ -16,13 +16,11 @@ First, you need to create the cluster, running the following command:
 ```
 $ kind create cluster --name airflow-cluster --config kind-cluster.yaml
 ```
-
 Checking if the cluster is running and stable:
 ```
 $ kubectl cluster-info
 $ kubectl get nodes -o wide
 ```
-
 Then we have to create the airflow namespace
 ```
 $ kubectl create namespace airflow
@@ -34,12 +32,10 @@ $ helm repo update
 $ helm search repo airflow
 $ helm install airflow apache-airflow/airflow --namespace airflow --debug
 ```
-
 In another terminal, we can see the pods running with the command:
 ```
 $ kubectl get pods -n airflow
 ```
-
 To connect in airflow UI, we need to user the port-forward:
 ```
 $ kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow --context kind-airflow-cluster
