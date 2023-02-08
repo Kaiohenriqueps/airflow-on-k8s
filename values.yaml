@@ -46,7 +46,7 @@ securityContext: {}
 airflowHome: /opt/airflow
 
 # Default airflow repository -- overridden by all the specific images below
-defaultAirflowRepository: apache-custom
+defaultAirflowRepository: airflow-custom
 
 # Default airflow tag to deploy
 defaultAirflowTag: "1.0.0"
@@ -326,8 +326,8 @@ extraEnv: ~
 # Extra envFrom 'items' that will be added to the definition of airflow containers
 # A string is expected (can be templated).
 extraEnvFrom: |
-  configMapRef:
-  name: 'airflow-variables'
+  - configMapRef:
+      name: 'airflow-variables'
 # eg:
 # extraEnvFrom: |
 #   - secretRef:
