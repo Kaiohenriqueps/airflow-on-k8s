@@ -55,4 +55,7 @@ Then, we have to load the image into our cluster.
 ```
 $ kind load docker-image airflow-custom:1.0.0 --name airflow-cluster 
 ```
-Then, we have to modify (in values.yaml) the `defaultAirflowRepository` with the value (name) of our image (in this case, is airflow-custom) and we also have to change `defaultAirflowTag` with the tag (in this case, 1.0.0).
+Then, we have to modify (in values.yaml) the `defaultAirflowRepository` with the value (name) of our image (in this case, is airflow-custom) and we also have to change `defaultAirflowTag` with the tag (in this case, 1.0.0). Again, we have to upgrade:
+```
+$ helm upgrade --install airflow apache-airflow/airflow -n airflow -f values.yaml --debug
+```
