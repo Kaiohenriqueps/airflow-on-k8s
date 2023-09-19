@@ -46,27 +46,35 @@ securityContext: {}
 airflowHome: /opt/airflow
 
 # Default airflow repository -- overridden by all the specific images below
-defaultAirflowRepository: apache/airflow
+# defaultAirflowRepository: apache/airflow
+defaultAirflowRepository: airflow-custom
 
 # Default airflow tag to deploy
-defaultAirflowTag: "2.2.2"
+# defaultAirflowTag: "2.5.1"
+defaultAirflowTag: "1.0.0"
 
 # Airflow version (Used to make some decisions based on Airflow Version being deployed)
-airflowVersion: "2.2.2"
+airflowVersion: "2.5.1"
 
 # Images
 images:
+  # airflow:
+  #   # repository: apache-airflow/airflow
+  #   # tag: 2.5.1
+  #   repository: ~
+  #   tag: ~
+  #   pullPolicy: IfNotPresent
+  #   db_migrations:
+  #     enabled: true
   airflow:
-    repository: apache-airflow/airflow
-    tag: 2.2.2
+    repository: ~
+    tag: ~
     pullPolicy: IfNotPresent
-    db_migrations:
-      enabled: false
   # To avoid images with user code, you can turn this to 'true' and
   # all the 'run-airflow-migrations' and 'wait-for-airflow-migrations' containers/jobs
   # will use the images from 'defaultAirflowRepository:defaultAirflowTag' values
   # to run and wait for DB migrations .
-  useDefaultImageForMigration: false
+  useDefaultImageForMigration: true
   # timeout (in seconds) for airflow-migrations to complete
   migrationsWaitTimeout: 300
   pod_template:
