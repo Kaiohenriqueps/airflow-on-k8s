@@ -38,6 +38,8 @@ $ ./destroy-cluster.sh
 
 ### How to port forward to access UI
 
+To access the UI, we need to user/password: admin/admin.
+
 ```
 $ ./port-forward.sh
 ```
