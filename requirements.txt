@@ -1,2 +1,0 @@
-airflow-provider-great-expectations==0.0.6
-apache-airflow-providers-oracle
